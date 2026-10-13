@@ -29,3 +29,29 @@ jobs:
           name: aseprite-${{ steps.build.outputs.ASEPRITE_VERSION }}
           path: github
           if-no-files-found: error
+
+  build-mac:
+    runs-on: macos-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ninja
+        if: runner.os == 'macOS'
+        shell: bash
+        run: command -v ninja >/dev/null 2>&1 || brew install ninja
+
+      - name: Build
+        id: build
+        shell: bash
+        run: bash build-mac.sh
+        env:
+          ASEPRITE_VERSION: ${{ github.event.inputs.version }}
+
+      - name: Archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: aseprite-mac-${{ steps.build.outputs.ASEPRITE_VERSION }}
+          path: github
+          if-no-files-found: error

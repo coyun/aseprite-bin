@@ -31,6 +31,10 @@ See list of available Aseprite versions [here][versions].
 
 For building newer aseprite version repeat steps 3 to 5.
 
+The same workflow also builds a macOS (Apple Silicon) binary in parallel —
+the `aseprite-mac-*` artifact contains the `Aseprite.app` bundle plus the
+portable `aseprite.ini` and `data` files.
+
 [Aseprite]: https://github.com/aseprite/aseprite
 [versions]: https://github.com/aseprite/aseprite/tags
 [download page]: https://www.aseprite.org/download/
